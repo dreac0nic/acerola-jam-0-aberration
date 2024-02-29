@@ -1,2 +1,11 @@
 # Godot 4+ specific ignores
 .godot/
+
+
+### Editor Generated Files ###
+*.blend[0-9]
+.*.sw*
+
+
+### Project ###
+raw-assets/
