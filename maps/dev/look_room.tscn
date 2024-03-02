@@ -77,4 +77,4 @@ omni_range = 73.907
 omni_attenuation = 1.46409
 
 [node name="Player" parent="." instance=ExtResource("1_v8ml8")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.25, 0)
