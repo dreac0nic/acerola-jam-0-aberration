@@ -5,7 +5,7 @@ extends CharacterBody3D
 const SMALLEST_MOVEMENT_THRESHOLD = 1e-05
 
 
-func gravity(delta: float, ratio: float = 1.0, direction: Vector3 = Vector3.DOWN) -> void:
+func gravity(delta: float, ratio: float = 1.0, direction: Vector3 = Vector3.DOWN) -> void: # TODO: default ratio export?
 	velocity += ratio*direction*ProjectSettings.get_setting("physics/3d/default_gravity")*delta
 
 
