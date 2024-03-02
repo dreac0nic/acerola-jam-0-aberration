@@ -24,7 +24,7 @@ func change_state(target_state: BaseState):
 	changed_state.emit(current_state)
 
 
-func _physical_process(delta: float):
+func _physics_process(delta: float):
 	var trans_state = current_state._move_physics_process(delta)
 
 	if trans_state:
