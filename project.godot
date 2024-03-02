@@ -185,3 +185,10 @@ attack={
 , Object(InputEventJoypadMotion,"resource_local_to_scene":false,"resource_name":"","device":-1,"axis":5,"axis_value":1.0,"script":null)
 ]
 }
+
+[layer_names]
+
+3d_physics/layer_1="zawarudo"
+3d_physics/layer_2="actors"
+3d_physics/layer_3="props"
+3d_physics/layer_4="interacts"

@@ -1,0 +1,80 @@
+[gd_scene load_steps=8 format=3 uid="uid://bne63hcpv7ksy"]
+
+[ext_resource type="PackedScene" uid="uid://qvv366m5nvph" path="res://actors/player/player.tscn" id="1_v8ml8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a3etr"]
+albedo_color = Color(0.352941, 0.352941, 0.352941, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_h6wql"]
+albedo_color = Color(0.337255, 0.647059, 0.854902, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_b6cg5"]
+albedo_color = Color(0, 0.827451, 0.129412, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6vhs3"]
+albedo_color = Color(0.901961, 0.427451, 0.462745, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r3xn6"]
+albedo_color = Color(0.866667, 0.698039, 0.0784314, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_blvx4"]
+albedo_color = Color(1, 0, 1, 1)
+
+[node name="LookRoom" type="Node3D"]
+
+[node name="Geometry" type="CSGCombiner3D" parent="."]
+use_collision = true
+collision_mask = 7
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.25, 0)
+size = Vector3(25, 0.5, 25)
+material = SubResource("StandardMaterial3D_a3etr")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-1, 8.74228e-08, 0, -8.74228e-08, -1, 0, 0, 0, 1, 0, 3.75, 0)
+size = Vector3(25, 0.5, 25)
+material = SubResource("StandardMaterial3D_h6wql")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.75, 12.25)
+size = Vector3(25, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_b6cg5")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-1, 0, -8.74228e-08, 0, 1, 0, 8.74228e-08, 0, -1, 0, 1.75, -12.25)
+size = Vector3(25, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_6vhs3")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, -12.25, 1.75, 0)
+size = Vector3(24, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_r3xn6")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Geometry"]
+transform = Transform3D(1.19249e-08, 0, -1, 0, 1, 0, 1, 0, 1.19249e-08, 12.25, 1.75, 0)
+size = Vector3(24, 3.5, 0.5)
+material = SubResource("StandardMaterial3D_blvx4")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.25, -6)
+omni_range = 73.907
+omni_attenuation = 1.46409
+
+[node name="OmniLight3D2" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.25, -6)
+omni_range = 73.907
+omni_attenuation = 1.46409
+
+[node name="OmniLight3D3" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -6, 2.25, 6)
+omni_range = 73.907
+omni_attenuation = 1.46409
+
+[node name="OmniLight3D4" type="OmniLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2.25, 6)
+omni_range = 73.907
+omni_attenuation = 1.46409
+
+[node name="Player" parent="." instance=ExtResource("1_v8ml8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
