@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://qvv366m5nvph"]
+
+[ext_resource type="Script" path="res://actors/player/looker.gd" id="1_btjur"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df04y"]
+radius = 0.25
+
+[node name="Player" type="CharacterBody3D"]
+
+[node name="MovementShape" type="CollisionShape3D" parent="."]
+shape = SubResource("CapsuleShape3D_df04y")
+
+[node name="Head" type="Node3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.75, 0)
+
+[node name="Eyes" type="Node3D" parent="Head" node_paths=PackedStringArray("pivot_node")]
+script = ExtResource("1_btjur")
+pivot_node = NodePath("../..")
+
+[node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
