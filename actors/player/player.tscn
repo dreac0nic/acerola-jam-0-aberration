@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://qvv366m5nvph"]
+[gd_scene load_steps=10 format=3 uid="uid://qvv366m5nvph"]
 
 [ext_resource type="Script" path="res://actors/player/looker.gd" id="1_btjur"]
 [ext_resource type="Script" path="res://actors/player/quakebody3d.gd" id="1_ydten"]
@@ -6,9 +6,15 @@
 [ext_resource type="Script" path="res://actors/player/movement_states/idle.gd" id="4_d3lj8"]
 [ext_resource type="Script" path="res://actors/player/movement_states/walk.gd" id="5_rn8c1"]
 [ext_resource type="Script" path="res://actors/player/movement_states/air.gd" id="6_p6jc2"]
+[ext_resource type="Script" path="res://util/formatted_label.gd" id="7_s5je6"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df04y"]
 radius = 0.25
+
+[sub_resource type="LabelSettings" id="LabelSettings_7uup5"]
+font_size = 48
+outline_size = 8
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Player" type="CharacterBody3D"]
 script = ExtResource("1_ydten")
@@ -59,3 +65,23 @@ idle_state = NodePath("../Idling")
 walk_state = NodePath("../Walking")
 sprint_state = NodePath("../Sprinting")
 player_body = NodePath("../..")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 19.0
+offset_right = 274.0
+offset_bottom = 67.0
+text = "??????????"
+label_settings = SubResource("LabelSettings_7uup5")
+script = ExtResource("7_s5je6")
+format_string = "%s"
+
+[connection signal="changed_state" from="MovementController" to="Control/Label" method="apply_formatted_values"]
