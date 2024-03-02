@@ -1,11 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://qvv366m5nvph"]
+[gd_scene load_steps=8 format=3 uid="uid://qvv366m5nvph"]
 
 [ext_resource type="Script" path="res://actors/player/looker.gd" id="1_btjur"]
+[ext_resource type="Script" path="res://actors/player/quakebody3d.gd" id="1_ydten"]
+[ext_resource type="Script" path="res://actors/player/movement_state_controller.gd" id="3_5obxr"]
+[ext_resource type="Script" path="res://actors/player/movement_states/idle.gd" id="4_d3lj8"]
+[ext_resource type="Script" path="res://actors/player/movement_states/walk.gd" id="5_rn8c1"]
+[ext_resource type="Script" path="res://actors/player/movement_states/air.gd" id="6_p6jc2"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_df04y"]
 radius = 0.25
 
 [node name="Player" type="CharacterBody3D"]
+script = ExtResource("1_ydten")
 
 [node name="MovementShape" type="CollisionShape3D" parent="."]
 shape = SubResource("CapsuleShape3D_df04y")
@@ -18,3 +24,38 @@ script = ExtResource("1_btjur")
 pivot_node = NodePath("../..")
 
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes"]
+
+[node name="MovementController" type="Node" parent="." node_paths=PackedStringArray("starting_state")]
+script = ExtResource("3_5obxr")
+starting_state = NodePath("Idling")
+
+[node name="Idling" type="Node" parent="MovementController" node_paths=PackedStringArray("walk_state", "sprint_state", "air_state", "player_body")]
+script = ExtResource("4_d3lj8")
+walk_state = NodePath("../Walking")
+sprint_state = NodePath("../Sprinting")
+air_state = NodePath("../Falling")
+player_body = NodePath("../..")
+
+[node name="Walking" type="Node" parent="MovementController" node_paths=PackedStringArray("sprint_state", "idle_state", "air_state", "player_body")]
+script = ExtResource("5_rn8c1")
+sprint_state = NodePath("../Sprinting")
+idle_state = NodePath("../Idling")
+air_state = NodePath("../Falling")
+player_body = NodePath("../..")
+
+[node name="Sprinting" type="Node" parent="MovementController" node_paths=PackedStringArray("sprint_state", "idle_state", "air_state", "player_body")]
+script = ExtResource("5_rn8c1")
+invert_input_check = true
+sprint_state = NodePath("../Walking")
+idle_state = NodePath("../Idling")
+maximum_speed = 10.0
+acceleration = 100.0
+air_state = NodePath("../Falling")
+player_body = NodePath("../..")
+
+[node name="Falling" type="Node" parent="MovementController" node_paths=PackedStringArray("idle_state", "walk_state", "sprint_state", "player_body")]
+script = ExtResource("6_p6jc2")
+idle_state = NodePath("../Idling")
+walk_state = NodePath("../Walking")
+sprint_state = NodePath("../Sprinting")
+player_body = NodePath("../..")
